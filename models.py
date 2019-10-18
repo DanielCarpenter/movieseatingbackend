@@ -6,7 +6,7 @@ from flask_admin.contrib.sqla import ModelView
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///sqlite.db"
 app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
-#app.config.update(dict(secret_key="wrong"))
+app.secret_key = 'super secret key'
 
 db = SQLAlchemy(app)
 admin = Admin(app, name='movielog', template_mode='bootstrap3')
@@ -38,6 +38,5 @@ admin.add_view(MoviesView(Movies, db.session))
 #   category=db.Column()
 
 if __name__ == '__main__':
-    app.secret_key = 'super secret key'
     app.config['SESSION_TYPE'] = 'filesystem'
     app.run(debug=1)
