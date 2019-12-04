@@ -7,7 +7,7 @@ from flask_jwt_extended import jwt_required
 
 class OneMovie(Resource):
 
-    # @jwt_required
+    @jwt_required
     def get(self):
         parser = reqparse.RequestParser()
         parser.add_argument('movie_id', type=int, required=True)
@@ -19,6 +19,7 @@ class OneMovie(Resource):
 
         return jsonify(movies=movie_schema.dump(movie))
 
+    @jwt_required
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('title', type=str, required=True),
