@@ -35,7 +35,12 @@ class User(db.Model, UserMixin):
     @classmethod
     def find_by_username(cls, username):
         return cls.query.filter_by(email=username).first()
-
+    
+    #For registering new users via API
+    @classmethod
+    def nextId():
+        next = User.query(db.func.max(User.id)).first()
+        return (next.id+1)
 
 db.create_all()
 
