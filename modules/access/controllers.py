@@ -27,10 +27,10 @@ class ApiLogin(Resource):
             # when authenticated, return a fresh access token and a refresh token
             access_token = create_access_token(identity=user.id, fresh=True)
             refresh_token = create_refresh_token(user.id)
-            return output_json({
+            return {
                 'token': access_token,
                 'refresh': refresh_token
-            }, 200)
+            }, 200
 
         return {"message": "Invalid Credentials!"}, 401
 
@@ -43,9 +43,3 @@ class TokenRefresh(Resource):
         # return a non-fresh token for the user
         new_token = create_access_token(identity=current_user, fresh=False)
         return {'access_token': new_token}, 200
-
-def output_json(data, code, headers=None):
-    """Makes a Flask response with a JSON encoded body"""
-    resp = make_response(json.dumps(data), code)
-    resp.headers.extend(headers or {})
-    return resp
