@@ -5,6 +5,7 @@ from flask_admin.contrib.sqla import ModelView
 from flask_security import current_user
 from modules.movies import Movie, Genre, Actor
 from modules.accounts import User, Role
+from modules.theaters import Showing, Theater
 
 
 from flask_security import Security, SQLAlchemyUserDatastore
@@ -49,7 +50,7 @@ class AppModelView(ModelView):
 
 
 #admin views
-secure = True #use to switch between secure view and unsecure view if developing
+secure = False #use to switch between secure view and unsecure view if developing
 
 if (secure):
     admin.add_view(AppModelView(Movie, db.session))
@@ -57,9 +58,14 @@ if (secure):
     admin.add_view(AppModelView(Actor, db.session))
     admin.add_view(AppModelView(User, db.session))
     admin.add_view(AppModelView(Role, db.session))
+    admin.add_view(AppModelView(Showing, db.session))
+    admin.add_view(AppModelView(Theater, db.session))
+    
 else:
     admin.add_view(ModelView(Movie, db.session))
     admin.add_view(ModelView(Genre, db.session))
     admin.add_view(ModelView(Actor, db.session))
     admin.add_view(ModelView(User, db.session))
     admin.add_view(ModelView(Role, db.session))
+    admin.add_view(ModelView(Showing, db.session))
+    admin.add_view(ModelView(Theater, db.session))
