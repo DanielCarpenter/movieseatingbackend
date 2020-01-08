@@ -15,7 +15,7 @@ class Movie(db.Model):
     genre = db.relationship('Genre', backref=db.backref('movie', lazy=True))
     cast = db.relationship('Actor', secondary=movies_actors_association, lazy=True,
                          backref=db.backref('movies', lazy=True))
-
+    
     def __repr__(self):
         return self.title
 
