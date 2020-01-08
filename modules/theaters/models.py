@@ -11,7 +11,7 @@ class Showing(db.Model):
     theater = db.relationship('Theater', backref=db.backref('showing', lazy=True))
 
     def __repr__(self):
-        return "{} {} in Theater {}".format(self.time, movie, theater)
+        return "{} {} in Theater {}".format(self.time, self.movie, self.theater)
 
 
 class Theater(db.Model):
@@ -20,7 +20,7 @@ class Theater(db.Model):
     rowSize=db.Column(db.Integer)   #for configurable theater sizes
 
     def __repr__(self):
-        return self.id
+        return str(self.id)
 
 class ShowingSchema(ModelSchema):
     class Meta:
