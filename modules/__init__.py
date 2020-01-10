@@ -19,6 +19,7 @@ import modules.movies
 import modules.admin
 import modules.accounts
 import modules.access
+import modules.theaters
 
 @app.route('/')
 def index():
