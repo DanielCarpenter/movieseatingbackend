@@ -4,8 +4,8 @@ from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask_security import current_user
 from modules.movies import Movie, Genre, Actor
-from modules.accounts import User, Role
-from modules.theaters import Showing, Theater, Location, Seat
+from modules.accounts import User, Role, Showing, Seat
+from modules.theaters import Theater, Location
 
 
 from flask_security import Security, SQLAlchemyUserDatastore
