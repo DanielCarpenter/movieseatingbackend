@@ -5,7 +5,7 @@ from flask_admin.contrib.sqla import ModelView
 from flask_security import current_user
 from modules.movies import Movie, Genre, Actor
 from modules.accounts import User, Role
-from modules.theaters import Showing, Theater
+from modules.theaters import Showing, Theater, Location, Seat
 
 
 from flask_security import Security, SQLAlchemyUserDatastore
@@ -60,6 +60,8 @@ if (secure):
     admin.add_view(AppModelView(Role, db.session))
     admin.add_view(AppModelView(Showing, db.session))
     admin.add_view(AppModelView(Theater, db.session))
+    admin.add_view(AppModelView(Location, db.session))
+    admin.add_view(AppModelView(Seat, db.session))
     
 else:
     admin.add_view(ModelView(Movie, db.session))
@@ -69,3 +71,5 @@ else:
     admin.add_view(ModelView(Role, db.session))
     admin.add_view(ModelView(Showing, db.session))
     admin.add_view(ModelView(Theater, db.session))
+    admin.add_view(ModelView(Location, db.session))
+    admin.add_view(ModelView(Seat, db.session))
