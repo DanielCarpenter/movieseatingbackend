@@ -1,4 +1,5 @@
 from modules import db
+from ..theaters.models import Seat
 from flask_security import UserMixin, RoleMixin
 from marshmallow_sqlalchemy import ModelSchema
 
@@ -28,6 +29,7 @@ class User(db.Model, UserMixin):
     confirmed_at = db.Column(db.DateTime())
     roles = db.relationship('Role', secondary=roles_users,
                             backref=db.backref('users', lazy='dynamic'))
+    reservations = db.relationship('Seat',back_populates='user', lazy=True)
 
     def __str__(self):
         return self.email
