@@ -19,7 +19,7 @@ class OneMovie(Resource):
 
         return jsonify(movies=movie_schema.dump(movie))
 
-    @jwt_required
+    #@jwt_required
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('title', type=str, required=True),
@@ -58,8 +58,8 @@ class OneMovie(Resource):
 
 class MovieList(Resource):
 
-    @jwt_required
+    #@jwt_required
     def get(self):
         movies = Movie.query.all()
 
-        return jsonify(movie=movies_schema.dump(movies))
+        return jsonify(movies_schema.dump(movies))
