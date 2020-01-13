@@ -74,9 +74,10 @@ class ApiRegister(Resource):
                         )
     def post(self):
         self.args = self.parser.parse_args()
-        if(User.find_by_username(self.args['username'])):
+        if(User.find_by_username(self.args['username'])): #if user exists dont allow
             return {"message": "User with {} username already exists".format(self.args['username'])}, 409
         else:
+            #create the user with provided parameters, and automatically set it as active, hashes password
             user = User(
                 first_name = self.args['firstName'],
                 last_name = self.args['lastName'],
