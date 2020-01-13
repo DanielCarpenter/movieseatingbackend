@@ -42,7 +42,8 @@ class OneShowing(Resource):
         if not location:
             return abort(404, 'location with id: {} does not exist in database.'.format(self.args['movie_id']))
 
-        size = theater.rowSize * theater.rowNumber
+        #originally attempted creating the seats here too, but request took way too long.
+        #size = theater.rowSize * theater.rowNumber
         
         show = Showing(
             time=self.args['time'],
@@ -79,7 +80,9 @@ class OneSeat(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument('seat_id', type=int, required=True),
         parser.add_argument('showing_id', type=int, required=True)
+        #uncomment below and comment out get_jwt_identity line if testing unsecure.
         #parser.add_argument('user_id', type=int, required=True)
+        
         self.args = parser.parse_args()
         
         showing = Showing.query.filter(Showing.id == self.args['showing_id']).first()
@@ -90,7 +93,7 @@ class OneSeat(Resource):
         if seat.user_id != None:
             return abort(400, 'seat is reserved')
         
-        seat.user_id = get_jwt_identity()
+        seat.user_id = get_jwt_identity() #gets user identity
         
         
         
