@@ -8,7 +8,7 @@ from flask_jwt_extended import JWTManager
 app = Flask(__name__)
 
 #provides the settings for the applications
-import common.config
+import config
 
 api = Api(app)
 ma = Marshmallow(app)
