@@ -4,7 +4,7 @@ from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_r
 from flask_security.utils import verify_password, encrypt_password
 from modules import db
 import datetime
-from modules.accounts import User, Role
+from modules.models.user_models import User, Role
 
 
 

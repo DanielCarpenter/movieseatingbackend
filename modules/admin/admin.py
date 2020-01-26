@@ -3,16 +3,17 @@ from flask import url_for, redirect, request, abort
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask_security import current_user
-from modules.movies import Movie, Genre, Actor
-from modules.accounts import User, Role, Showing, Seat
-from modules.theaters import Theater, Location
+from modules.models.movie_models import Movie, Genre, Actor
+from modules.models.user_models import User, Role
+from modules.models.theater_models import Theater, Location, Seat, Showing
+
 
 
 from flask_security import Security, SQLAlchemyUserDatastore
 from flask_admin import helpers as admin_helpers
 
 #Flask Admin
-admin = Admin(app, name='movielog', base_template='my_master.html', template_mode='bootstrap3')
+admin = Admin(app, name='Theater Seating', base_template='my_master.html', template_mode='bootstrap3')
 
 user_datastore = SQLAlchemyUserDatastore(db, User, Role)
 security = Security(app, user_datastore)

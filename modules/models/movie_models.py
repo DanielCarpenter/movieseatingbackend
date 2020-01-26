@@ -42,7 +42,7 @@ class MovieSchema(ModelSchema):
         model = Movie
 
 
-db.create_all()
+#db.create_all()
 
 
 movies_schema = MovieSchema(many=True)

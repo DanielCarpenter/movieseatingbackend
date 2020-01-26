@@ -1,10 +1,10 @@
 from flask_restful import Resource, reqparse
-from .models import Showing, Seat, User, showing_schema, showings_schema
+from modules.models.user_models import  User
 from flask import abort, jsonify
 from modules import db
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from modules.theaters import Theater, Location
-from modules.movies import Movie
+from modules.models.theater_models import Theater, Location, Showing, Seat, showing_schema, showings_schema
+from modules.models.movie_models import Movie
 
 
 class OneShowing(Resource):
@@ -27,7 +27,6 @@ class OneShowing(Resource):
         parser.add_argument('time', type=str, required=True),
         parser.add_argument('movie_id', type=int, required=True),
         parser.add_argument('theater_id', type=int, required=True)
-        parser.add_argument('location_id', type=int, required=True)
         self.args = parser.parse_args()
         
         theater = Theater.query.filter(Theater.id == self.args['theater_id']).first()
@@ -37,10 +36,6 @@ class OneShowing(Resource):
         movie = Movie.query.filter(Movie.id == self.args['movie_id']).first()
         if not movie:
             return abort(404, 'Movie with id: {} does not exist in database.'.format(self.args['movie_id']))
-        
-        location = Location.query.filter(Location.id == self.args['location_id']).first()
-        if not location:
-            return abort(404, 'location with id: {} does not exist in database.'.format(self.args['movie_id']))
 
         #originally attempted creating the seats here too, but request took way too long.
         #size = theater.rowSize * theater.rowNumber
@@ -48,9 +43,7 @@ class OneShowing(Resource):
         show = Showing(
             time=self.args['time'],
             movie_id=self.args['movie_id'],
-            theater_id=self.args['theater_id'],
-            location_id=self.args['location_id']
-
+            theater_id=self.args['theater_id']
         )
 
 
