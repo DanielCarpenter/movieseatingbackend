@@ -5,7 +5,7 @@ from flask_admin.contrib.sqla import ModelView
 from flask_security import current_user
 from modules.models.movie_models import Movie, Genre, Actor
 from modules.models.user_models import User, Role
-from modules.models.theater_models import Theater, Location, Seat, Showing
+from modules.models.theater_models import Theater, Location, Seat, Showing, Reservation
 
 
 
@@ -63,6 +63,8 @@ if (secure):
     admin.add_view(AppModelView(Theater, db.session))
     admin.add_view(AppModelView(Location, db.session))
     admin.add_view(AppModelView(Seat, db.session))
+    admin.add_view(AppModelView(Reservation, db.session))
+
     
 else:
     admin.add_view(ModelView(Movie, db.session))
@@ -74,3 +76,4 @@ else:
     admin.add_view(ModelView(Theater, db.session))
     admin.add_view(ModelView(Location, db.session))
     admin.add_view(ModelView(Seat, db.session))
+    admin.add_view(ModelView(Reservation, db.session))
