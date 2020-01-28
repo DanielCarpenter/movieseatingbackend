@@ -48,9 +48,21 @@ class Seat(db.Model):
     #user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     #user = db.relationship('User', back_populates='reservations')
 
-
     def __repr__(self):
         return self.number
+
+class Reservation(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    seat_id = db.Column(db.Integer, db.ForeignKey('seat.id'), nullable = False)
+    showing_id = db.Column(db.Integer, db.ForeignKey('showing.id'), nullable = False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
+
+    def __repr__(self):
+        return str(self.id)
+
+
+
+
 
 
 class TheaterSchema(ModelSchema):
