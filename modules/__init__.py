@@ -46,7 +46,7 @@ account_api.add_resource(ApiLogin, '/login')
 account_api.add_resource(TokenRefresh, '/refresh')
 account_api.add_resource(ShowingList, '/showing/all')
 account_api.add_resource(OneShowing, '/showing')
-account_api.add_resource(OneSeat, '/reserve')
+account_api.add_resource(Reservations, '/reserve')
 
 
 db.create_all()
