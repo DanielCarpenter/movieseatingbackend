@@ -69,9 +69,17 @@ class TheaterSchema(ModelSchema):
     class Meta:
         model = Theater
 
+theater_schema = TheaterSchema
+theaters_schema = TheaterSchema(many=True)
+
+
 class LocationSchema(ModelSchema):
     class Meta:
         model = Location
+
+location_schema = LocationSchema
+locations_schema = LocationSchema(many=True)
+
 
 class ShowingSchema(ModelSchema):
     class Meta:
@@ -90,19 +98,12 @@ seat_schema = SeatSchema
 seats_schema = SeatSchema(many=True)
 
 
+class ReservationSchema(ModelSchema):
+    class Meta:
+        model = Reservation
 
 
+reservation_schema = ReservationSchema
+reservations_schema = ReservationSchema(many=True)
 
-
-
-#db.create_all()
-
-
-
-
-theater_schema = TheaterSchema
-theaters_schema = TheaterSchema(many=True)
-
-location_schema = LocationSchema
-locations_schema = LocationSchema(many=True)
 
